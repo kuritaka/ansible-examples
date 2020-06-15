@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+  tasks:
+    - name: Remove Users
+      user:
+        name: "{{ item.name }}"
+        state: absent
+        remove: yes
+      with_items:
+        - { name: 'ansibleuser10' }
+        - { name: 'ansibleuser11' }
+
+

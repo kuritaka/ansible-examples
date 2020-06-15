@@ -1,0 +1,5 @@
+# Command modules test
+- hosts: all
+  tasks:
+    - name: uptime
+      command: uptime

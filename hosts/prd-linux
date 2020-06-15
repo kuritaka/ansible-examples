@@ -1,0 +1,15 @@
+[production:children]
+prd_group1
+prd_group2
+
+[prd_group1]
+prd-server1
+prd-server2
+
+
+[prd_group2]
+prd-server3
+prd-server4
+
+[prd_group2:vars]
+ansible_ssh_user=ubuntu

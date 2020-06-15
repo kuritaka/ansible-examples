@@ -1,0 +1,11 @@
+# Command modules test
+- hosts: all
+  tasks:
+    - name: hostname
+      shell: hostname
+    - name: ip address
+      shell: /usr/sbin/ip a |grep inet
+    - name: return memory free
+      shell: free
+    - name: uptime
+      shell: uptime

@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+  tasks:
+    - name: Add Group
+      group:
+        name: infra
+        gid: 1060
+
+    - name: Add user 'ansibleuser1'
+      user:
+        name: ansibleuser1
+        password: "{{ 'password' | password_hash('sha512') }}"
+        #password: password1
+        shell: /bin/bash
+        uid: 1050
+        group: infra
+        groups: wheel,users
+        #append: yes
+        state: present
+

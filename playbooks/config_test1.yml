@@ -1,0 +1,21 @@
+- hosts: all
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: modify sshd_config PasswordAuthentication yes
+      lineinfile:
+        dest: /etc/ssh/sshd_config
+        state: present
+        backrefs: yes
+        regexp: '^PasswordAuthentication no'
+        line: 'PasswordAuthentication yes'
+      notify:
+        - restart sshd
+
+    - name: add ansible /etc/sudoers
+      lineinfile:
+        dest: /etc/sudoers
+        backup: yes
+        line: 'ansible ALL=(ALL) NOPASSWD: ALL'
+

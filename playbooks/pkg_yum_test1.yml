@@ -1,0 +1,38 @@
+- hosts: all
+
+  become: yes
+
+# ansible-playbook -i <inventory> -l <host> <playbook.yml> --tags <tag_name>
+  tasks:
+    - name: install httpd
+      yum: pkg={{ item }} state=installed
+      with_items:
+        -httpd
+      tags:
+        -setup
+
+    - name: install php
+      yum: pkg={{ item }} state=installed
+      with_items:
+        -php
+        -php-mysql
+      tags:
+        -setup
+
+    - name: install Mariadb
+      yum: pkg={{ item }} state=installed
+      with_items:
+        -mariadb
+        -mariadb-server
+      tags:
+        -setup
+
+
+    - name: start service
+      service: name=httpd
+               state=started
+               enabled=yes
+
+    - name: restart service status
+      service: name=httpd
+               state=restarted

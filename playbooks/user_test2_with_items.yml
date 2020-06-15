@@ -1,0 +1,14 @@
+- hosts: all
+  become: yes
+  become_user: root
+  tasks:
+    - name: add user
+      user:
+        name: "{{ item.name }}"
+        group: "{{ item.group }}"
+        password: "{{ item.password | password_hash('sha512') }}"
+      with_items:
+        - { name: 'ansibleuser10', password: 'password', group: 'wheel' }
+        - { name: 'ansibleuser11', password: 'password', group: 'wheel' }
+
+

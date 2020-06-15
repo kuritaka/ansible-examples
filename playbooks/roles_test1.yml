@@ -1,0 +1,5 @@
+- hosts: group1 group2
+  become: True
+  roles:
+    - common
+    - sudoers

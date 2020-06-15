@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+  tasks:
+    - name: Remove 'ansibleuser1'
+      user:
+        name: ansibleuser1
+        state: absent
+        remove: yes
+
+    - name: Remove 'ansibleuser1'
+      group:
+        name: testgroup1
+        state: absent

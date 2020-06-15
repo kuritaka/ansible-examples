@@ -1,0 +1,15 @@
+- hosts: all
+  become: yes
+  become_user: root
+
+  vars:
+    users:
+      user01:
+        groups: dev
+      user02:
+        groups: dev
+
+  tasks:
+    - name: add user
+      user: name={{ item.key }} groups={{ item.value.groups }}
+      with_dict: "{{ users }}"
