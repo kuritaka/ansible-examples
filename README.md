@@ -1,6 +1,8 @@
 # Ansible Examples
 
-
+<br>
+This is my Ansbile best practices
+<br>
 
 ## How to check without Ansible Playbook
 ### How to check ansible's environment
@@ -18,6 +20,7 @@ ansible-inventory  --host  DEVICE
 ```
 
 
+<br>
 ## How to check Ansible Playbook
 
 ### How to check Ansible Playbook's Syntax Check
@@ -45,22 +48,12 @@ ansible-playbook  -l <host> playbooks/<playbook.yml>  -C
 ansible-playbook  -l <host> playbooks/<playbook.yml>  --check
 ```
 
-### Execute
+<br>
+## How to execute ansible-playbook
 ```
 ansible-playbook -l <host> playbooks/<playbook.yml>
 ansible-playbook -l <host> playbooks/<playbook.yml> --tags <tag_name>
 
 ansible-playbook -v -l <host> playbooks/<playbook.yml>
-```
-
-
-## How to execute ansible-playbook
-```
-ansible-playbook  playbooks/test1.yml --check           # Execute Test
-
-
-ansible-playbook  playbooks/test1.yml
-or
-ansible-playbook  -l test1  playbooks/test1.yml
 ```
 
