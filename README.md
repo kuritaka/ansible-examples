@@ -19,8 +19,8 @@ ansible-inventory  --graph
 ansible-inventory  --host  DEVICE
 ```
 
-
 <br>
+
 ## How to check Ansible Playbook
 
 ### How to check Ansible Playbook's Syntax Check
@@ -49,7 +49,9 @@ ansible-playbook  -l <host> playbooks/<playbook.yml>  --check
 ```
 
 <br>
+
 ## How to execute ansible-playbook
+
 ```
 ansible-playbook -l <host> playbooks/<playbook.yml>
 ansible-playbook -l <host> playbooks/<playbook.yml> --tags <tag_name>
