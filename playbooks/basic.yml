@@ -1,0 +1,46 @@
+#
+# ansible-playbook -i localhost, -c local playbooks/basic.yml
+# ansible-playbook -l host10 playbooks/basic.yml
+#
+- hosts: all
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: modify sshd_config PasswordAuthentication yes
+      lineinfile:
+        dest: /etc/ssh/sshd_config
+        state: present
+        backrefs: yes
+        regexp: '^PasswordAuthentication no'
+        line: 'PasswordAuthentication yes'
+      notify:
+        - restart sshd
+
+    - name: check locale
+      command: localectl status
+      register: localectl_result
+      check_mode: no
+      changed_when: false
+
+    - name: change locale
+      command: localectl set-locale LANG=ja_JP.utf8
+      when: "'LANG=ja_JP.utf8' not in localectl_result.stdout"
+
+
+    - name: set timezone to Asia/Tokyo
+      timezone:
+        name: Asia/Tokyo
+
+
+    - name: install basic rpm
+      yum: 
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+        - vim-enhanced
+        - bash-completion
+        - tree
+        - git
+

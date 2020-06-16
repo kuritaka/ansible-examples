@@ -1,31 +1,49 @@
+# ansible-playbook -i <inventory> -l <host> <playbook.yml> --tags <tag_name>
 - hosts: all
-
   become: yes
 
-# ansible-playbook -i <inventory> -l <host> <playbook.yml> --tags <tag_name>
   tasks:
+    - name: install basic rpm
+      yum:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+        - vim-enhanced
+        - bash-completion
+        - tree
+        - git
+
+    - name: install basic rpm
+      yum:
+        name:
+          - git
+          - tree
+
+
     - name: install httpd
-      yum: pkg={{ item }} state=installed
-      with_items:
-        -httpd
+      yum:
+        name:
+          -httpd
       tags:
         -setup
 
     - name: install php
-      yum: pkg={{ item }} state=installed
-      with_items:
-        -php
-        -php-mysql
-      tags:
-        -setup
+      yum:
+        name:
+          - httpd
+          - php
+          - php-mysql
+        tags:
+          - setup
 
     - name: install Mariadb
-      yum: pkg={{ item }} state=installed
-      with_items:
-        -mariadb
-        -mariadb-server
-      tags:
-        -setup
+      yum:
+        name:
+          - mariadb
+          - mariadb-server
+        tags:
+          - setup
 
 
     - name: start service

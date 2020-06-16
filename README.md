@@ -53,6 +53,8 @@ ansible-playbook  -l <host> playbooks/<playbook.yml>  --check
 ## How to execute ansible-playbook
 
 ```
+ansible-playbook -i localhost, -c local  playbooks/<playbook.yml>
+
 ansible-playbook -l <host> playbooks/<playbook.yml>
 ansible-playbook -l <host> playbooks/<playbook.yml> --tags <tag_name>
 
