@@ -2,10 +2,10 @@
 - hosts: all
   tasks:
     - name: hostname
-      shell: hostname
+      command: hostname
     - name: ip address
       shell: /usr/sbin/ip a |grep inet
     - name: return memory free
-      shell: free
+      command: free
     - name: uptime
-      shell: uptime
+      command: uptime
