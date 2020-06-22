@@ -1,0 +1,10 @@
+---
+- debug:
+    msg: "main.yml"
+
+- name: hostname
+  command: hostname
+
+- include_tasks: ../roles/test1/tasks/test1.yml
+  tags: roles_test1
+

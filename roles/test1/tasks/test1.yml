@@ -1,0 +1,7 @@
+---
+- debug:
+    msg: "test1.yml"
+
+- name: hostname
+  command: hostname
+

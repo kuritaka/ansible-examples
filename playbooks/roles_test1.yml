@@ -1,5 +1,13 @@
-- hosts: group1 group2
-  become: True
+# ansible-playbook -l test10  playbooks/roles_test1.yml --tags "test1"
+# ansible-playbook -l test10 playbooks/roles_test1.yml --skip-tags "test1"
+
+# ansible-playbook -l test10  playbooks/roles_test1.yml --tags "roles_test1"
+
+- hosts: all
+  become: yes
+  become_user: root
+
   roles:
-    - common
-    - sudoers
+    - role: test1
+      tags: test1
+

@@ -61,3 +61,11 @@ ansible-playbook -l <host> playbooks/<playbook.yml> --tags <tag_name>
 ansible-playbook -v -l <host> playbooks/<playbook.yml>
 ```
 
+```
+ansible-playbook -l test10  playbooks/roles_test1.yml --tags "test1"
+ansible-playbook -l test10 playbooks/roles_test1.yml --skip-tags "test1"
+
+ansible-playbook -l test10  playbooks/roles_test1.yml --tags "roles_test1"
+```
+
+
