@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+   - name: playbook-test1
+     shell: date >> /tmp/test1.txt
+     tags: test1
+
+   - name: playbook-test2
+     shell: date >> /tmp/test2.txt
+     tags: test2
