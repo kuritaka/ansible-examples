@@ -3,69 +3,48 @@
 <br>
 This is my Ansbile best practices
 <br>
-
-## How to check without Ansible Playbook
-### How to check ansible's environment
-```
-ansible --version
-ansible-config dump --only-changed
-```
+<br>
 
 
-### How to check inventory
+## How to install Ansible
+### Ubuntu 22.04(WSL)
 
 ```
-ansible-inventory  --graph
-ansible-inventory  --host  DEVICE
+$ sudo apt-get update
+$ sudo apt-get install ansible
+$ sudo apt install sshpass
+$ ansible --version
+
+# For WSL
+$ export ANSIBLE_CONFIG=$(pwd)
 ```
 
 <br>
 
-## How to check Ansible Playbook
+## Server Configuration
 
-### How to check Ansible Playbook's Syntax Check
-
-```
-nsible-playbook xxxx.yml --syntax-check
-```
-
-### How to check the hosts to be executed
-```
-ansible-playbook  playbooks/test1.yml --list-hosts
-```
-
-### How to check the task to be executed
-```
-ansible-playbook  playbooks/test1.yml --list-tasks
-```
-
-### Dry Run
-```
-ansible-playbook  -l <host> playbooks/<playbook.yml>  -C --diff
-ansible-playbook  -l <host> playbooks/<playbook.yml>  --check --diff
-
-ansible-playbook  -l <host> playbooks/<playbook.yml>  -C
-ansible-playbook  -l <host> playbooks/<playbook.yml>  --check
-```
-
-<br>
-
-## How to execute ansible-playbook
+### Target Server
 
 ```
-ansible-playbook -i localhost, -c local  playbooks/<playbook.yml>
+# useradd ansible
+# echo 'ansible:ansible' | chpasswd
 
-ansible-playbook -l <host> playbooks/<playbook.yml>
-ansible-playbook -l <host> playbooks/<playbook.yml> --tags <tag_name>
+# vi /etc/ssh/sshd_config
+PasswordAuthentication yes
 
-ansible-playbook -v -l <host> playbooks/<playbook.yml>
+# systemctl reload sshd.service
+
+
+# cp -p  /etc/sudoers  /etc/sudoers.`date -d '1day ago' +%Y%m%d`
+# visudo
+ansible    ALL=(ALL)   NOPASSWD:ALL
 ```
 
-```
-ansible-playbook -l test10  playbooks/roles_test1.yml --tags "test1"
-ansible-playbook -l test10 playbooks/roles_test1.yml --skip-tags "test1"
 
-ansible-playbook -l test10  playbooks/roles_test1.yml --tags "roles_test1"
-```
+### Manager Server
 
+```
+$ ssh-keygen -t rsa -b 2048 -C "ansible"  -N "" -f "ansible"
+$ ssh-copy-id -i ansible  ansible@${target_host}
+```
 
