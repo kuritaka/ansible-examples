@@ -1,0 +1,11 @@
+- name: playbook-test1
+  shell: date >> /tmp/test1.txt
+  tags: test1
+
+- name: playbook-test2
+  shell: date >> /tmp/test2.txt
+  tags: test2
+
+- name: playbook-test3
+  debug:
+    msg: playbook-test3

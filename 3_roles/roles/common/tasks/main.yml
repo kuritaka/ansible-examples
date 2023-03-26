@@ -20,5 +20,5 @@
     groups: wheel
     state: present
   with_items:
-  - { name: 'adachin', password: 'adachindayo' }
-  - { name: 'server', password: 'serverdayo' }
+  - { name: 'user1', password: 'user1pass' }
+  - { name: 'user2', password: 'user2pass' }
